@@ -33,25 +33,29 @@ def MoveEqua(y,AB):
     - g*(R_E/(R_E + y[0]))**2])
     
 
-h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))
+h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))#1.
 
 print h_und_v
+
+print "Maximum der Geschwindigkeit: "
+print abs(h_und_v[:,1][sp.argmax(abs(h_und_v[:,1]))])
+#Hätte auch argmin ohne abs() nehmen können, so ists aber physikalisch korrekter (Richtung)
 
 plt.figure("Sprung Felix Baumgartner")
 plt.subplot(211)
 
 #plt.plot(sp.linspace(0,200),h_und_v[:,0], label="Hoehe")
-plt.plot(sp.linspace(0,200),h_und_v[:,1], label="v(t)")
+plt.plot(sp.linspace(0,200),abs(h_und_v[:,1]), label="v(t)")
 
 plt.title("Geschwindigkeit als Funktion der Zeit")
-plt.ylabel("Geschwindigkeit in m/s")
+plt.ylabel("Geschwindigkeit in $ms^{-1}$")
 plt.xlabel("Zeit in s")
 
 plt.subplot(212)
-plt.plot(h_und_v[:,0],h_und_v[:,1], label="v(h)")
+plt.plot(h_und_v[:,0],abs(h_und_v[:,1]), label="v(h)")
 
 plt.title("Geschwindigkeit als Funktion der Hoehe")
-plt.ylabel("Geschwindigkeit in m/s")
+plt.ylabel("Geschwindigkeit in $ms^{-1}$")
 plt.xlabel("Hoehe in m")
 
 plt.show()
