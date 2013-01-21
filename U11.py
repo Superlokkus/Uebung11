@@ -24,23 +24,16 @@ A = 0.45 #m^2
 h = 39045 #m
 h_0 = 1585 #m
 
-def MoveEqua(t,AB):
-    """Gibt die Beschleunigung zurück für t.
-    
+def MoveEqua(y,AB):
+    """Gibt die Ableitungen der DGL zurück.
+        
     Erwartet AB[0] als z Anfangsbedingung und AB[1] als v AB"""
     
-    return (0.5*m**-1*rho0*sp.e**((-mMMAtm*g*AB[0])/(R*T)) * c_w*A*AB[1]**2
-    - g*(R_E/(R_E + AB[0]))**2)
+    return array([y[1],0.5*m**-1*rho0*sp.e**((-mMMAtm*g*y[0])/(R*T)) * c_w*A*y[1]**2
+    - g*(R_E/(R_E + AB[0]))**2])
     
-zv = sp.empty([0])
+zv = sp.array([h,0])
 
-for i in sp.linspace(h,h_0,200):
-    if (i == h):#Anfangsbedingung für v
-        zv = sp.append(zv,sp.integrate.odeint(MoveEqua,sp.array([i,0]),0))
-    else:
-        zv = sp.append(zv,sp.integrate.odeint(MoveEqua,sp.array([i,]),0))
-    
-print zv
-   
-#print sp.integrate.odeint(MoveEqua,sp.array([h,0]),0) #h und v kommt zurück
-    
+
+print sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,300)) #h und v kommt zurück
+print zv    
