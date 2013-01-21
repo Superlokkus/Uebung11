@@ -36,3 +36,8 @@ def MoveEqua(y,AB):
 h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))
 
 print h_und_v
+
+plt.plot(h_und_v[:,0], label="Höhe")
+
+plt.legend()
+plt.show()
