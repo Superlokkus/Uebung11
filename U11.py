@@ -38,7 +38,7 @@ h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))#1.
 print h_und_v
 
 print "Maximum der Geschwindigkeit: "
-print abs(h_und_v[:,1][sp.argmax(abs(h_und_v[:,1]))])
+print abs(h_und_v[:,1][sp.argmax(abs(h_und_v[:,1]))])#3.
 #Hätte auch argmin ohne abs() nehmen können, so ists aber physikalisch korrekter (Richtung)
 
 plt.figure("Sprung Felix Baumgartner")
