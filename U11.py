@@ -37,7 +37,11 @@ h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))
 
 print h_und_v
 
-plt.plot(h_und_v[:,0], label="Höhe")
+#plt.plot(sp.linspace(0,200),h_und_v[:,0], label="Hoehe")
+plt.plot(sp.linspace(0,200),h_und_v[:,1], label="Geschwindigkeit")
 
+plt.title("Sprung Felix Baumgartner")
+plt.ylabel("Geschwindigkeit in m/s")
+plt.xlabel("Zeit in s")
 plt.legend()
 plt.show()
