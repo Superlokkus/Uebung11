@@ -25,12 +25,14 @@ h = 39045 #m
 h_0 = 1585 #m
 
 def MoveEqua(y,AB):
-    """Gibt die Ableitungen der DGL zurück.
+    """Gibt die Ableitungen der GL zurück.
         
     Erwartet AB[0] als z Anfangsbedingung und AB[1] als v AB"""
     
     return sp.array([y[1],0.5*m**-1*rho0*sp.e**((-mMMAtm*g*y[0])/(R*T)) * c_w*A*y[1]**2
-    - g*(R_E/(R_E + AB[0]))**2])
+    - g*(R_E/(R_E + y[0]))**2])
     
 
-print sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,300)) #h und v kommt zurück
+h_und_v = sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,200))
+
+print h_und_v
