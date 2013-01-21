@@ -29,11 +29,8 @@ def MoveEqua(y,AB):
         
     Erwartet AB[0] als z Anfangsbedingung und AB[1] als v AB"""
     
-    return array([y[1],0.5*m**-1*rho0*sp.e**((-mMMAtm*g*y[0])/(R*T)) * c_w*A*y[1]**2
+    return sp.array([y[1],0.5*m**-1*rho0*sp.e**((-mMMAtm*g*y[0])/(R*T)) * c_w*A*y[1]**2
     - g*(R_E/(R_E + AB[0]))**2])
     
-zv = sp.array([h,0])
-
 
 print sp.integrate.odeint(MoveEqua,sp.array([h,0]),sp.linspace(0,300)) #h und v kommt zurück
-print zv    
